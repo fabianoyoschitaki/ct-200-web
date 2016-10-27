@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>CT-200 - Tarefa Prática 1º Bimestre</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<style>
+			.jumbotron{
+				background-color:#337ab7;
+				text-align:center;
+				color:#FFFFFF;
+				padding-top: 30px;
+				padding-bottom: 30px;
+			}
+		</style>		
+	</head>
+	<body>
+		<div class="text-center jumbotron">
+			<h2>CT-200 - Tarefa Prática 1º Bimestre - Expressões Regulares e Autômatos Finitos</h2>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-3">
+					<div class="text-center">
+						<h3>Digite uma expressão regular</h3>
+					</div>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="ex: ab+(b+c)*" id='regex_input'>
+						<span class="input-group-btn">
+							<button class="btn btn-primary" type="button" id="gerar_automato_btn">Gerar Autômato</button>						
+						</span>
+					</div>
+					<br/>
+				</div>
+			</div>
+			<div class="row">
+				<!-- <div class="col-md-4">
+					<div class="form-group text-center">
+						<label for="comment">Notação Graphviz:</label>
+						<textarea class="form-control" id="graphviz_data" rows="20" cols="50" width="100%" wrap="off">digraph finite_state_machine {
+	rankdir=LR;
+	size="8,5"
+	node [shape = doublecircle]; LR_0 LR_3 LR_4 LR_8;
+	node [shape = circle];
+	LR_0 -> LR_2 [ label = "SS(B)" ];
+	LR_0 -> LR_1 [ label = "SS(S)" ];
+	LR_1 -> LR_3 [ label = "S($end)" ];
+	LR_2 -> LR_6 [ label = "SS(b)" ];
+	LR_2 -> LR_5 [ label = "SS(a)" ];
+	LR_2 -> LR_4 [ label = "S(A)" ];
+	LR_5 -> LR_7 [ label = "S(b)" ];
+	LR_5 -> LR_5 [ label = "S(a)" ];
+	LR_6 -> LR_6 [ label = "S(b)" ];
+	LR_6 -> LR_5 [ label = "S(a)" ];
+	LR_7 -> LR_8 [ label = "S(b)" ];
+	LR_7 -> LR_5 [ label = "S(a)" ];
+	LR_8 -> LR_6 [ label = "S(b)" ];
+	LR_8 -> LR_5 [ label = "S(a)" ];
+}</textarea>
+						<button class="btn btn-primary" type="button" id="atualizar_automato_viz_btn">Atualizar Autômato</button>
+					</div>
+				</div> -->
+				<div class="col-md-12">
+					<div class="text-center">
+						<div id="result_viz_div"/>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="text-center">
+						<div id="passos_div"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="viz.js"></script>
+	<script type="text/javascript" src="automato.js"></script>	
+</html>
