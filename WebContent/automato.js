@@ -38,7 +38,7 @@ $(function() {
 //								+ passos[passo]['descricao']));
 //			}
 			passos_div.empty();
-			var table = $("<table>").addClass("table table-striped table-bordered").appendTo(passos_div);
+			var table = $("<table>").addClass("table table-striped table-bordered table-curved").appendTo(passos_div);
 			table.append($("<thead>").append($("<tr>")
 				.append($("<th>").text("Passo").width("10%"))
 				.append($("<th>").text("Descrição").width("90%"))));

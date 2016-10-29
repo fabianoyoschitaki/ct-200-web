@@ -29,6 +29,38 @@
 .center {
 	text-align: center;
 }
+
+.table-curved {
+    border-collapse: separate;
+}
+.table-curved {
+    border: solid #ccc 1px;
+    border-radius: 6px;
+    border-left:0px;
+}
+.table-curved td, .table-curved th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+.table-curved th {
+    border-top: none;
+}
+.table-curved th:first-child {
+    border-radius: 6px 0 0 0;
+}
+.table-curved th:last-child {
+    border-radius: 0 6px 0 0;
+}
+.table-curved th:only-child{
+    border-radius: 6px 6px 0 0;
+}
+.table-curved tr:last-child td:first-child {
+    border-radius: 0 0 0 6px;
+}
+.table-curved tr:last-child td:last-child {
+    border-radius: 0 0 6px 0;
+}
+
 </style>
 </head>
 <body>
@@ -38,7 +70,7 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-6 col-sm-offset-3">
+			<div class="col-sm-8 col-sm-offset-2">
 				<h3 class="center">Digite uma expressão regular</h3>
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="ex: ab+(b+c)*"
@@ -53,7 +85,7 @@
 			<div class="col-md-12">
 				<div id="result_viz_div" class="margem-top text-center" />
 			</div>
-			<div class="col-sm-6 col-sm-offset-3">
+			<div class="col-sm-8 col-sm-offset-2">
 				<div id="passos_div" class="margem-top" />
 			</div>
 		</div>
