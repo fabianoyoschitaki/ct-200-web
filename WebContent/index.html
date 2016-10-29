@@ -8,27 +8,27 @@
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
 <style>
-	.jumbotron {
-		background-color: #337ab7;
-		text-align: center;
-		color: #FFFFFF;
-		padding-top: 30px;
-		padding-bottom: 30px;
-	}
-	
-	.margem-top {
-		margin-top: 30px;
-	}
-	
-	.table th {
-	   text-align: center;
-	   color: #FFFFFF;
-	   background-color: #337ab7;
-	}
-	
-	.center {
-		text-align: center;
-	}
+.jumbotron {
+	background-color: #337ab7;
+	text-align: center;
+	color: #FFFFFF;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.margem-top {
+	margin-top: 30px;
+}
+
+.table th {
+	text-align: center;
+	color: #FFFFFF;
+	background-color: #337ab7;
+}
+
+.center {
+	text-align: center;
+}
 </style>
 </head>
 <body>
@@ -39,9 +39,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-6 col-sm-offset-3">
-				<div class="text-center">
-					<h3>Digite uma expressão regular</h3>
-				</div>
+				<h3 class="center">Digite uma expressão regular</h3>
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="ex: ab+(b+c)*"
 						id='regex_input'> <span class="input-group-btn">
@@ -53,11 +51,8 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<div class="text-center">
-					<div id="result_viz_div" class="margem-top" />
-				</div>
+				<div id="result_viz_div" class="margem-top text-center" />
 			</div>
-			
 			<div class="col-sm-6 col-sm-offset-3">
 				<div id="passos_div" class="margem-top" />
 			</div>
