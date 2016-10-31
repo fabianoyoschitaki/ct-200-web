@@ -175,7 +175,7 @@ public class Automato {
 	public ProcessamentoCadeia processaCadeia(String cadeiaParaVerificar) {
 		return ProcessamentoCadeiaUtil.processaCadeia(this, cadeiaParaVerificar);
 	}
-
+	
 	/**
 	 * Método que cria novo arco para o autômato
 	 * 

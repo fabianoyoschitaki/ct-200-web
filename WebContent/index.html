@@ -70,13 +70,12 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-8 col-sm-offset-2">
+			<div class="col-sm-6 col-sm-offset-3">
 				<h3 class="center">Digite uma expressão regular</h3>
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="ex: ab+(b+c)*"
 						id='regex_input'> <span class="input-group-btn">
-						<button class="btn btn-primary" type="button"
-							id="gerar_automato_btn">Gerar Autômato</button>
+						<button class="btn btn-primary" type="button" id="gerar_automato_btn">Gerar Autômato</button>
 					</span>
 				</div>
 			</div>
@@ -85,6 +84,18 @@
 			<div class="col-md-12">
 				<div id="result_viz_div" class="margem-top text-center" />
 			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-3 margem-top">
+				<div class="input-group" style="display: none;" id="testa_cadeia_div">
+					<input type="text" class="form-control" placeholder="ex: ababa" id="cadeia_input"> 
+						<span class="input-group-btn">
+						<button class="btn btn-primary" type="button" id="testa_cadeia_btn">Testar Cadeia</button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
 				<div id="passos_div" class="margem-top" />
 			</div>

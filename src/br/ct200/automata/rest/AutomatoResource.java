@@ -11,11 +11,15 @@ import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
 
+import br.ct200.automata.dto.EstadoDTO;
 import br.ct200.automata.dto.PassoDTO;
 import br.ct200.automata.dto.RetornoAutomatoDTO;
+import br.ct200.automata.dto.RetornoProcessamentoCadeiaDTO;
 import br.ct200.tarefa1.common.Automato;
+import br.ct200.tarefa1.common.Estado;
 import br.ct200.tarefa1.common.GraphvizParser;
 import br.ct200.tarefa1.common.Passo;
+import br.ct200.tarefa1.processo.ProcessamentoCadeia;
 
 @Path("/automato")
 @Produces(MediaType.APPLICATION_JSON)
@@ -60,5 +64,35 @@ public class AutomatoResource {
 	  retorno.setPassos(passos);
 	  return new Gson().toJson(retorno);
   }
-
+  
+  @GET
+  @Path("processacadeia/{regex}/{cadeia}")
+  public String getProcessamentoCadeia(
+		  @PathParam("regex") String regex,
+		  @PathParam("cadeia") String cadeia){
+	  RetornoProcessamentoCadeiaDTO retorno = new RetornoProcessamentoCadeiaDTO();
+	  Automato automato = new Automato(regex);
+	  ProcessamentoCadeia processaCadeia = automato.processaCadeia(cadeia);
+	  retorno.setRegex(regex);
+	  retorno.setCadeia(cadeia);
+	  retorno.setCadeiaAceita(processaCadeia.isCadeiaAceita());
+	 
+	  List<PassoDTO> passos = new ArrayList<PassoDTO>();
+	  for (Passo passo : processaCadeia.getPassosProcessamento()){
+		  PassoDTO p = new PassoDTO();
+		  p.setNumero(passo.getNumero());
+		  p.setDescricao(passo.getDescricao());
+		  passos.add(p);
+	  }
+	  retorno.setPassos(passos);
+	  List<EstadoDTO> estadosPossiveis = new ArrayList<EstadoDTO>();
+	  for (Estado estado : processaCadeia.getEstadosPossiveis()){
+		  EstadoDTO e = new EstadoDTO();
+		  e.setId(estado.getId());
+		  e.setTipo(estado.getTipo());
+		  estadosPossiveis.add(e);
+	  }
+	  retorno.setEstadosPossiveis(estadosPossiveis);
+	  return new Gson().toJson(retorno);
+  }
 } 
