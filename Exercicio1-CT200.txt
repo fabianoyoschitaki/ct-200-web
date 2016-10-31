@@ -1,0 +1,16 @@
+digraph  E_AFN                  {  
+	rankdir=LR;                      
+	size="8,5"                     
+	node [shape = doublecircle]; 1;  
+	node [shape = circle]            
+	0 -> 3 [ label = "&" ];   
+	3 -> 2 [ label = "&" ];   
+	3 -> 3 [ label = "a" ];   
+	3 -> 3 [ label = "b" ];   
+	2 -> 4 [ label = "b" ];   
+	4 -> 5 [ label = "b" ];   
+	5 -> 6 [ label = "&" ];   
+	6 -> 1 [ label = "&" ];   
+	6 -> 6 [ label = "b" ];   
+	6 -> 6 [ label = "a" ];   
+}

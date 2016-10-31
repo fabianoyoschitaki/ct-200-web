@@ -1,0 +1,17 @@
+ab
+char(antes) = letra e char(depois) = letra e parentese = 0
+
+(b*)a e (b)*a
+char(antes) = ')' or '*' e char(depois) = letra or '('
+
+a(b)
+char(antes) = letra e char(depois) = '(' e parentese = 0
+
+a*b*
+char(antes) = * e char(depois) = letra e parentese = 0
+
+(a+ba)b*
+char(antes) = ')' e char(depois) = letra e parentese = 0
+
+(a+ba)(b)*
+char(antes) = ')' e char(depois) = '(' e parentese = 0
