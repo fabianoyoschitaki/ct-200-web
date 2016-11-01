@@ -18,7 +18,11 @@ $(function() {
 	// botão para testar uma cadeia
 	var testa_cadeia_btn = $("#testa_cadeia_btn");
 
+	// valor da regex atual
 	var regex_atual;
+	
+	// se o automato é sem transicao epsilon
+	var is_sem_transicao_epsilon;
 	
 	/**
 	 * funcao que atualiza div com imagem do automato calculado a partir da
@@ -26,7 +30,8 @@ $(function() {
 	 */
 	function atualizaImagemAutomato(graphviz_data) {
 		try {
-			result_viz_div.html(Viz(graphviz_data, "svg"));
+			result_viz_div.html(Viz(graphviz_data, "svg")).fadeIn("slow");
+			result_viz_div.hide().fadeIn(1000);
 		} catch (err) {
 			alert("Erro ao gerar autômato: " + err);
 		}
@@ -57,15 +62,16 @@ $(function() {
 	/**
 	 * funcao que atualiza div com passos do processamento de cadeia
 	 */
-	function atualizaResultadoCadeia(descricao, isCadeiaAceita, passos) {
+	function atualizaResultadoCadeia(isCadeiaAceita, passos) {
 		try {
 			passos_div.empty();
 			passos_div.append($("<h4>")
 				.text("Cadeia " + (isCadeiaAceita? " foi " : " não foi ") + " aceita.")
 				.addClass("center")
 				.css('color', (isCadeiaAceita? "green" : "red")));
-			passos_div.append($("<h3>").text(descricao).addClass("center"));
+			passos_div.append($("<h3>").text("Passos do processamento da cadeia: \"" + cadeia_input.val() + "\"").addClass("center"));
 			atualizaPassos(passos);
+			passos_div.hide().fadeIn(500);
 		} catch (err) {
 			alert("Erro ao atualizaResultadoCadeia: " + err);
 		}
@@ -74,13 +80,32 @@ $(function() {
 	/**
 	 * funcao que atualiza div com passos do processamento do automato
 	 */
-	function atualizaResultadoAutomato(descricao, passos, graphviz) {
+	function atualizaResultadoAutomato(passos, graphviz) {
 		try {
 			passos_div.empty();
-			passos_div.append($("<h3>").text(descricao).addClass("center"));
+			passos_div.append($("<h3>").text("Passos da criação do Autômato: " + regex_atual).addClass("center"));
 			atualizaPassos(passos);
+			passos_div.hide().fadeIn(500);
 			atualizaImagemAutomato(graphviz);
-			$("#testa_cadeia_div").show();
+			$("#testa_cadeia_div").hide().fadeIn(1000);
+		} catch (err) {
+			alert("Erro ao atualizaResultadoAutomato: " + err);
+		}
+	}
+	
+	/**
+	 * funcao que atualiza div com passos do processamento do automato sem Epsilon
+	 */
+	function atualizaResultadoAutomatoSemEpsilon(passos, passosTransformacao, graphviz) {
+		try {
+			passos_div.empty();
+			passos_div.append($("<h3>").text("Passos da criação do Autômato: " + regex_atual).addClass("center"));
+			atualizaPassos(passos);
+			passos_div.append($("<h3>").text("Remoção das transições epsilon").addClass("center"));
+			atualizaPassos(passosTransformacao);
+			passos_div.hide().fadeIn(500);
+			atualizaImagemAutomato(graphviz);
+			$("#testa_cadeia_div").hide().fadeIn(500);
 		} catch (err) {
 			alert("Erro ao atualizaResultadoAutomato: " + err);
 		}
@@ -92,12 +117,22 @@ $(function() {
 	 */
 	function processaAutomato() {
 		regex_atual = regex_input.val();
-		$.ajax({
-			url : 'rest/automato/transicaoepsilon/' + regex_atual,
-			success : function(result) {
-				atualizaResultadoAutomato("Passos da criação do Autômato: " + regex_atual, result['passos'], result['graphviz']);
-			}
-		});
+		is_sem_transicao_epsilon = $("#is_sem_transicao_epsilon").is(':checked');
+		if (is_sem_transicao_epsilon){
+			$.ajax({
+				url : 'rest/automato/transicaosemepsilon/' + regex_atual,
+				success : function(result) {
+					atualizaResultadoAutomatoSemEpsilon(result['passos'], result['passosTransformacao'], result['graphviz']);
+				}
+			});
+		} else {
+			$.ajax({
+				url : 'rest/automato/transicaoepsilon/' + regex_atual,
+				success : function(result) {
+					atualizaResultadoAutomato(result['passos'], result['graphviz']);
+				}
+			});
+		}
 	}
 	
 	/**
@@ -107,7 +142,7 @@ $(function() {
 		$.ajax({
 			url : 'rest/automato/processacadeia/' + regex_atual + '/' + cadeia_input.val(),
 			success : function(result) {
-				atualizaResultadoCadeia("Passos do processamento da cadeia: \"" + cadeia_input.val() + "\"", result['isCadeiaAceita'], result['passos']);
+				atualizaResultadoCadeia(result['isCadeiaAceita'], result['passos']);
 			}
 		});
 	}

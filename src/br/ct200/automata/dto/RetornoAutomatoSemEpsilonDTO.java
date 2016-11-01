@@ -5,7 +5,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class RetornoAutomatoDTO implements Serializable {
+public class RetornoAutomatoSemEpsilonDTO implements Serializable {
 	/**
 	 * 
 	 */
@@ -13,6 +13,7 @@ public class RetornoAutomatoDTO implements Serializable {
 	private String graphviz;
 	private String regex;
 	private List<PassoDTO> passos;
+	private List<PassoDTO> passosTransformacao;
 	public String getGraphviz() {
 		return graphviz;
 	}
@@ -30,5 +31,11 @@ public class RetornoAutomatoDTO implements Serializable {
 	}
 	public void setPassos(List<PassoDTO> passos) {
 		this.passos = passos;
+	}
+	public List<PassoDTO> getPassosTransformacao() {
+		return passosTransformacao;
+	}
+	public void setPassosTransformacao(List<PassoDTO> passosTransformacao) {
+		this.passosTransformacao = passosTransformacao;
 	}
 }
