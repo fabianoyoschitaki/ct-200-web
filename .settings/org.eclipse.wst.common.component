@@ -3,6 +3,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <property name="context-root" value="automata-web"/>
-        <property name="java-output-path" value="/automata-web/build/classes"/>
+        <property name="java-output-path" value="/automata-web/target/classes"/>
     </wb-module>
 </project-modules>
